@@ -44,6 +44,11 @@ public class frmDashBoard extends javax.swing.JFrame {
         mnuMachine = new javax.swing.JMenuItem();
         mnuEmployeeInfo = new javax.swing.JMenuItem();
         mnuProcessInfo = new javax.swing.JMenuItem();
+        mnuProductInfo1 = new javax.swing.JMenu();
+        mnuBuyer = new javax.swing.JMenuItem();
+        mnuProductCate1 = new javax.swing.JMenuItem();
+        mnuYarnType = new javax.swing.JMenuItem();
+        mnuPackingInfo = new javax.swing.JMenuItem();
         mnuProductInfo = new javax.swing.JMenu();
         mnuReadyGarments = new javax.swing.JMenuItem();
         mnuProductCate = new javax.swing.JMenuItem();
@@ -51,9 +56,6 @@ public class frmDashBoard extends javax.swing.JFrame {
         mnuUnit2 = new javax.swing.JMenuItem();
         mnuUnit3 = new javax.swing.JMenuItem();
         mnuUnit4 = new javax.swing.JMenuItem();
-        mnuProductInfo1 = new javax.swing.JMenu();
-        mnuBuyer = new javax.swing.JMenuItem();
-        mnuProductCate1 = new javax.swing.JMenuItem();
         mnuBuyerInfo = new javax.swing.JMenuItem();
         mnuProductInfo2 = new javax.swing.JMenu();
         mnuReadyGarmentsHead = new javax.swing.JMenuItem();
@@ -143,6 +145,44 @@ public class frmDashBoard extends javax.swing.JFrame {
         });
         basicMenu.add(mnuProcessInfo);
 
+        mnuProductInfo1.setText("Party Info");
+
+        mnuBuyer.setText("Buyer Information");
+        mnuBuyer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuBuyerActionPerformed(evt);
+            }
+        });
+        mnuProductInfo1.add(mnuBuyer);
+
+        mnuProductCate1.setText("Supplier's Information");
+        mnuProductCate1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuProductCate1ActionPerformed(evt);
+            }
+        });
+        mnuProductInfo1.add(mnuProductCate1);
+
+        basicMenu.add(mnuProductInfo1);
+
+        mnuYarnType.setMnemonic('a');
+        mnuYarnType.setText("Yarn Type");
+        mnuYarnType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuYarnTypeActionPerformed(evt);
+            }
+        });
+        basicMenu.add(mnuYarnType);
+
+        mnuPackingInfo.setMnemonic('a');
+        mnuPackingInfo.setText("Packing Info");
+        mnuPackingInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuPackingInfoActionPerformed(evt);
+            }
+        });
+        basicMenu.add(mnuPackingInfo);
+
         mnuProductInfo.setText("Product Info");
 
         mnuReadyGarments.setText("Readymade Garments");
@@ -194,26 +234,6 @@ public class frmDashBoard extends javax.swing.JFrame {
         mnuProductInfo.add(mnuUnit4);
 
         basicMenu.add(mnuProductInfo);
-
-        mnuProductInfo1.setText("Party Info");
-
-        mnuBuyer.setText("Buyer Information");
-        mnuBuyer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuBuyerActionPerformed(evt);
-            }
-        });
-        mnuProductInfo1.add(mnuBuyer);
-
-        mnuProductCate1.setText("Supplier's Information");
-        mnuProductCate1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuProductCate1ActionPerformed(evt);
-            }
-        });
-        mnuProductInfo1.add(mnuProductCate1);
-
-        basicMenu.add(mnuProductInfo1);
 
         mnuBuyerInfo.setMnemonic('a');
         mnuBuyerInfo.setText("Foreign Currency Rate");
@@ -849,6 +869,22 @@ public class frmDashBoard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_mnuEmployeeInfoActionPerformed
 
+    private void mnuYarnTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuYarnTypeActionPerformed
+        frmYarnType UR = new frmYarnType();
+        if (!UR.isVisible()) {
+            desktopPane.add(UR);
+            UR.setVisible(true);
+        }
+    }//GEN-LAST:event_mnuYarnTypeActionPerformed
+
+    private void mnuPackingInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPackingInfoActionPerformed
+        frmPackingInfo UR = new frmPackingInfo();
+        if (!UR.isVisible()) {
+            desktopPane.add(UR);
+            UR.setVisible(true);
+        }
+    }//GEN-LAST:event_mnuPackingInfoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -916,6 +952,7 @@ public class frmDashBoard extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuLabTest;
     private javax.swing.JMenuItem mnuLogout;
     private javax.swing.JMenuItem mnuMachine;
+    private javax.swing.JMenuItem mnuPackingInfo;
     private javax.swing.JMenuItem mnuProcessInfo;
     private javax.swing.JMenuItem mnuProductCate;
     private javax.swing.JMenuItem mnuProductCate1;
@@ -946,6 +983,7 @@ public class frmDashBoard extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuYarnCount;
     private javax.swing.JMenuItem mnuYarnDelivery;
     private javax.swing.JMenuItem mnuYarnReturn;
+    private javax.swing.JMenuItem mnuYarnType;
     private javax.swing.JMenuItem mnuunitMeasuring;
     private javax.swing.JMenu mnuwel;
     public javax.swing.JMenu productionMenu;

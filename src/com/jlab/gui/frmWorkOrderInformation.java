@@ -44,7 +44,7 @@ public class frmWorkOrderInformation extends javax.swing.JInternalFrame {
         GenAutoID();
 
         Fill_Party();
-        Fill_Currency();
+//        Fill_Currency();
         Fill_MarketedBy();
         Fill_YarnCount();
         Fill_YarnType();
@@ -459,7 +459,7 @@ public class frmWorkOrderInformation extends javax.swing.JInternalFrame {
         jLabel48.setText("Currency :");
 
         cboCurrency.setEditable(true);
-        cboCurrency.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Product Info" }));
+        cboCurrency.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BDT", "USD", "EUR" }));
         cboCurrency.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
@@ -833,15 +833,15 @@ public class frmWorkOrderInformation extends javax.swing.JInternalFrame {
     }
 
     public void Fill_Party() {
-        FillCombo(cboParty, "SELECT DISTINCT PartyName FROM tblPartyInfo ORDER BY PartyName", "PartyName", "Select Product Info");
+        FillCombo(cboParty, "SELECT DISTINCT PartyName FROM tblBuyerInfo ORDER BY PartyName", "PartyName", "Select Product Info");
     }
 
-    public void Fill_Currency() {
-        FillCombo(cboCurrency, "SELECT DISTINCT CurrencyName FROM tblCurrency ORDER BY CurrencyName", "CurrencyName", "Select Product Info");
-    }
+//    public void Fill_Currency() {
+//        FillCombo(cboCurrency, "SELECT DISTINCT CurrencyName FROM tblCurrency ORDER BY CurrencyName", "CurrencyName", "Select Product Info");
+//    }
 
     public void Fill_MarketedBy() {
-        FillCombo(cboMarketedBy, "SELECT DISTINCT EmpName FROM tblEmployeeInfo ORDER BY EmpName", "EmpName", "Select Employee");
+        FillCombo(cboMarketedBy, "SELECT DISTINCT EmployeeName FROM tblEmployee ORDER BY EmployeeName", "EmployeeName", "Select Employee");
     }
 
     public void Fill_YarnCount() {
@@ -849,7 +849,7 @@ public class frmWorkOrderInformation extends javax.swing.JInternalFrame {
     }
 
     public void Fill_YarnType() {
-        FillCombo(cboYarnType, "SELECT DISTINCT YarnType FROM tblYarnType ORDER BY YarnType", "YarnType", "Select Product Info");
+        FillCombo(cboYarnType, "SELECT DISTINCT YarnTypeName FROM tblYarnType ORDER BY YarnTypeName", "YarnTypeName", "Select Yarn Type");
     }
 
     public void Fill_Composition() {

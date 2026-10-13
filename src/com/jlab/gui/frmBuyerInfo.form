@@ -185,7 +185,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Employee Name :"/>
+        <Property name="text" type="java.lang.String" value="Party Name :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPartyName">
@@ -242,7 +242,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="24" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Employee Information"/>
+        <Property name="text" type="java.lang.String" value="Buyer Information"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPartyID">
@@ -252,7 +252,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Employee  ID :"/>
+        <Property name="text" type="java.lang.String" value="Party  ID :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -264,7 +264,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Role :"/>
+        <Property name="text" type="java.lang.String" value="Bank :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtBank">

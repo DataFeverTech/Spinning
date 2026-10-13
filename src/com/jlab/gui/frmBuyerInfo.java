@@ -36,7 +36,7 @@ public class frmBuyerInfo extends javax.swing.JInternalFrame {
         y = (screenSize.height - frameSize.height) / 2;
         setLocation(x, y);
         GenAutoID();
-
+        
         fillTable();
 
         btnUpdate.setEnabled(false);
@@ -94,7 +94,7 @@ public class frmBuyerInfo extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jlab/img/Commerial.png"))); // NOI18N
 
-        jLabel2.setText("Employee Name :");
+        jLabel2.setText("Party Name :");
 
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jlab/img/clear-icon.png"))); // NOI18N
         btnCancel.setText("Cancel");
@@ -129,15 +129,15 @@ public class frmBuyerInfo extends javax.swing.JInternalFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel3.setText("Employee Information");
+        jLabel3.setText("Buyer Information");
 
         txtPartyID.setEditable(false);
 
-        jLabel5.setText("Employee  ID :");
+        jLabel5.setText("Party  ID :");
 
         jLabel4.setText("Address :");
 
-        jLabel6.setText("Role :");
+        jLabel6.setText("Bank :");
 
         jLabel7.setText("Telephone :");
 
@@ -295,155 +295,208 @@ public class frmBuyerInfo extends javax.swing.JInternalFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
 
-        if (txtPartyName.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter Employee Name.");
-            txtPartyName.requestFocus();
-            return;
-        }
         try {
-            String query = "insert into tblEmployee(EmployeeID,EmployeeName,Address,Role,Telephone,Email,Remarks) values (?,?,?,?,?,?,?)";
-            pst = con.prepareStatement(query);
+            String query = "insert into tblBuyerInfo(PartyID,PartyName,Address,Bank,Telephone,Email,Remarks) values (?,?,?,?,?,?,?)";
+            pst = (PreparedStatement) con.prepareStatement(query);
             pst.setString(1, txtPartyID.getText());
-            pst.setString(2, txtPartyName.getText().trim());
-            pst.setString(3, txtAddress.getText().trim());
-            pst.setString(4, txtBank.getText().trim());
-            pst.setString(5, txtTelephone.getText().trim());
-            pst.setString(6, txtEmail.getText().trim());
-            pst.setString(7, txtRemark.getText().trim());
+            pst.setString(2, txtPartyName.getText());
+            pst.setString(3, txtAddress.getText());
+            pst.setString(4, txtBank.getText());
+            pst.setString(5, txtTelephone.getText());
+            pst.setString(6, txtEmail.getText());
+            pst.setString(7, txtRemark.getText());
             pst.execute();
-            JOptionPane.showMessageDialog(this, "Saved successfully.");
+            JOptionPane.showMessageDialog(this, " Registration SuccusFully Compled");
             Reset();
+
+            GenAutoID();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e);
+            JOptionPane.showMessageDialog(null, e);
         }
 
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        if (txtPartyName.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter Employee Name.");
-            txtPartyName.requestFocus();
-            return;
-        }
         try {
-            String query = "update tblEmployee set EmployeeName=?, Address=?, Role=?, Telephone=?, Email=?, Remarks=? where EmployeeID=?";
-            pst = con.prepareStatement(query);
-            pst.setString(1, txtPartyName.getText().trim());
-            pst.setString(2, txtAddress.getText().trim());
-            pst.setString(3, txtBank.getText().trim());
-            pst.setString(4, txtTelephone.getText().trim());
-            pst.setString(5, txtEmail.getText().trim());
-            pst.setString(6, txtRemark.getText().trim());
-            pst.setString(7, txtPartyID.getText());
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Updated successfully.");
+
+            String value = txtPartyID.getText();
+            String query = "update  tblunitmeas set Unit=?   where unitId= '" + value + "' ";
+            pst = (PreparedStatement) con.prepareStatement(query);
+            pst.setString(1, txtPartyName.getText());
+
+            pst.execute();
+
+            JOptionPane.showMessageDialog(null, "Update success");
             Reset();
+
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e);
+            JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        if (tblBuyer.getSelectedRow() < 0) {
-            JOptionPane.showMessageDialog(this, "Please select a row from the table.");
-            return;
-        }
-        int ok = JOptionPane.showConfirmDialog(this, "Do you want to delete this record?", "Delete", JOptionPane.YES_NO_OPTION);
-        if (ok != JOptionPane.YES_OPTION) {
-            return;
-        }
-        try {
-            String id = tblBuyer.getValueAt(tblBuyer.getSelectedRow(), 0).toString();
-            pst = con.prepareStatement("delete from tblEmployee where EmployeeID=?");
-            pst.setString(1, id);
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Deleted successfully.");
-            Reset();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e);
-        }
+
+//        int row = tblunit.getSelectedRow();
+//        if (row > -1) {
+//            int opt = JOptionPane.showConfirmDialog(null, "Are You sure to Delete", "Delete", JOptionPane.YES_NO_OPTION);
+//            if (opt == 0) {
+//                try {
+//
+//                    String value = tblunit.getModel().getValueAt(row, 0).toString();
+//                    String query = "delete from tblunitmeas where unitId=?";
+//                    pst = (PreparedStatement) con.prepareStatement(query);
+//                    pst.setString(1, value);
+//                    pst.execute();
+//                    DefaultTableModel model = (DefaultTableModel) tblunit.getModel();
+//                    model.setRowCount(0);
+//                    Reset();
+//                    fillTable();
+//                } catch (Exception e) {
+//                    JOptionPane.showMessageDialog(rootPane, e);
+//                }
+//            } else {
+//                DefaultTableModel model = (DefaultTableModel) tblunit.getModel();
+//                model.setRowCount(0);
+//                fillTable();
+//            }
+//        } else {
+//
+//            JOptionPane.showMessageDialog(null, "Pls Selected Deleted Item");
+//        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
 
-        fillTable();
+        ArrayList<Unit_Bean> al = null;
+        al = new ArrayList<Unit_Bean>();
+        String val = txtSearch.getText().toString();
+
+        try {
+
+            String qry = "select * from tblunitmeas where Unit like '%" + val + "%'";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(qry);
+            Unit_Bean LoadTable;
+            while (rs.next()) {
+                LoadTable = new Unit_Bean(rs.getString("unitId"), rs.getString("Unit"));
+                al.add(LoadTable);
+            }
+
+            //search ed teachers to be added to datatable
+            DefaultTableModel model = (DefaultTableModel) tblBuyer.getModel();
+            model.setRowCount(0); // Empty/clear the table
+            Object[] row = new Object[2];
+            for (int i = 0; i < al.size(); i++) {
+                row[0] = al.get(i).getUnitId();
+                row[1] = al.get(i).getUnit();
+                model.addRow(row);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error at searchKeyReleased " + e);
+        }
 
     }//GEN-LAST:event_txtSearchKeyReleased
 
     private void tblBuyerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBuyerMouseClicked
 
         if (evt.getClickCount() == 2) {
+
+            btnSave.setEnabled(false);
+            btnUpdate.setEnabled(true);
             int row = tblBuyer.getSelectedRow();
-            if (row < 0) {
-                return;
-            }
+
             try {
-                pst = con.prepareStatement("select * from tblEmployee where EmployeeID=?");
-                pst.setString(1, tblBuyer.getValueAt(row, 0).toString());
+
+                String Table_click = (tblBuyer.getModel().getValueAt(row, 0).toString());
+                String query = "SELECT * FROM tblunitmeas WHERE unitId='" + Table_click + "' ";
+                pst = (PreparedStatement) con.prepareStatement(query);
                 rs = pst.executeQuery();
                 if (rs.next()) {
-                    txtPartyID.setText(rs.getString("EmployeeID"));
-                    txtPartyName.setText(rs.getString("EmployeeName"));
-                    txtAddress.setText(rs.getString("Address"));
-                    txtBank.setText(rs.getString("Role"));
-                    txtTelephone.setText(rs.getString("Telephone"));
-                    txtEmail.setText(rs.getString("Email"));
-                    txtRemark.setText(rs.getString("Remarks"));
-                    btnSave.setEnabled(false);
-                    btnUpdate.setEnabled(true);
+
+                    String add1 = rs.getString("unitId");
+                    txtPartyID.setText(add1);
+
+                    String add2 = rs.getString("Unit");
+                    txtPartyName.setText(add2);
+
                 }
+
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, e);
+                JOptionPane.showMessageDialog(null, e);
             }
+
         }
     }//GEN-LAST:event_tblBuyerMouseClicked
 
-    public void fillTable() {
-        DefaultTableModel model = (DefaultTableModel) tblBuyer.getModel();
-        model.setRowCount(0);
+    public void GenAutoID() {
+
         try {
-            pst = con.prepareStatement("select EmployeeID, EmployeeName, Telephone from tblEmployee where EmployeeName like ? order by EmployeeID");
-            pst.setString(1, "%" + txtSearch.getText().trim() + "%");
-            ResultSet r = pst.executeQuery();
-            while (r.next()) {
-                model.addRow(new Object[]{r.getString("EmployeeID"), r.getString("EmployeeName"), r.getString("Telephone")});
+
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT MAX(PartyID) AS MaxID FROM tblBuyerInfo");
+            rs.next();
+            rs.getString("MaxID");
+            if (rs.getString("MaxID") == null) {
+                txtPartyID.setText("BYR-00001");
+            } else {
+                long id = Long.parseLong(rs.getString("MaxID").substring(4, rs.getString("MaxID").length()));
+                id++;
+                txtPartyID.setText("BYR-" + String.format("%05d", id));
             }
+
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e);
+            JOptionPane.showMessageDialog(null, e);
         }
+
     }
 
-    public void GenAutoID() {
+    //show / add the the data to table
+    public ArrayList<BuyerInfo_Bean> getAllData() {
+        ArrayList<BuyerInfo_Bean> al = null;
+        al = new ArrayList<BuyerInfo_Bean>();
         try {
-            Statement st = con.createStatement();
-            ResultSet r = st.executeQuery("SELECT MAX(EmployeeID) AS MaxID FROM tblEmployee");
-            r.next();
-            String max = r.getString("MaxID");
-            if (max == null) {
-                txtPartyID.setText("EMP-00001");
-            } else {
-                long id = Long.parseLong(max.substring(4));
-                id++;
-                txtPartyID.setText("EMP-" + String.format("%05d", id));
+
+            String qry = "select * from tblBuyerInfo";
+            Statement pst = con.createStatement();
+            ResultSet rs = pst.executeQuery(qry);
+            BuyerInfo_Bean LoadTable;
+            while (rs.next()) {
+                LoadTable = new BuyerInfo_Bean(rs.getString("PartyID"), rs.getString("PartyName")
+                , rs.getString("Telephone"));
+
+                al.add(LoadTable);
+
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e);
+            JOptionPane.showMessageDialog(null, "Error in getAllTeacherData()" + e);
+            return al;
+        }
+        return al;
+    }
+
+    //fill the jTable1 with data
+    public void fillTable() {
+        ArrayList<BuyerInfo_Bean> al = getAllData();
+        DefaultTableModel model = (DefaultTableModel) tblBuyer.getModel();
+        //  tblChequeDetails.getColumnModel().getColumn(0).setPreferredWidth(10);
+        model.setRowCount(0); // Empty/clear the table
+        Object[] row = new Object[3];
+        for (int i = 0; i < al.size(); i++) {
+            row[0] = al.get(i).getId();
+            row[1] = al.get(i).getName();
+            row[2] = al.get(i).getPhone();
+            model.addRow(row);
+
         }
     }
 
     private void Reset() {
+        txtPartyID.setText("");
         txtPartyName.setText("");
-        txtAddress.setText("");
-        txtBank.setText("");
-        txtTelephone.setText("");
-        txtEmail.setText("");
-        txtRemark.setText("");
-        txtSearch.setText("");
-        btnSave.setEnabled(true);
-        btnUpdate.setEnabled(false);
-        GenAutoID();
-        fillTable();
-        txtPartyName.requestFocus();
+
+        txtPartyID.requestFocus();
+
     }
 
 

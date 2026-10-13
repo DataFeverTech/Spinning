@@ -44,7 +44,7 @@ public class frmProcessWiseProductionWaste extends javax.swing.JInternalFrame {
         GenAutoID();
 
         Fill_WorkOrder();
-        Fill_Shift();
+//        Fill_Shift();
         Fill_YarnCount();
         Fill_EndUse();
         Fill_IssueNo();
@@ -372,7 +372,7 @@ public class frmProcessWiseProductionWaste extends javax.swing.JInternalFrame {
                         .addGap(2, 2, 2)
                         .addComponent(btnRemove))
                     .addComponent(txtStdWaste, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(91, 91, 91))
+                .addGap(0, 0, 0))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -505,7 +505,7 @@ public class frmProcessWiseProductionWaste extends javax.swing.JInternalFrame {
         jLabel46.setText("Shift :");
 
         cboShift.setEditable(true);
-        cboShift.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Product Info" }));
+        cboShift.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Day ", "Night" }));
         cboShift.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
@@ -591,7 +591,7 @@ public class frmProcessWiseProductionWaste extends javax.swing.JInternalFrame {
                         .addComponent(jLabel34)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCottonIssued, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -706,7 +706,8 @@ public class frmProcessWiseProductionWaste extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSave)
                 .addGap(18, 18, 18)
-                .addComponent(btnCancel))
+                .addComponent(btnCancel)
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -734,22 +735,21 @@ public class frmProcessWiseProductionWaste extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane2)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1073, Short.MAX_VALUE)))
-                .addContainerGap(39, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(342, 342, 342))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(352, 352, 352)
+                        .addComponent(jLabel3)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1084,9 +1084,9 @@ public class frmProcessWiseProductionWaste extends javax.swing.JInternalFrame {
         FillCombo(cboWorkOrder, "SELECT DISTINCT WorkOrderNo FROM tblWorkOrder ORDER BY WorkOrderNo", "WorkOrderNo");
     }
 
-    public void Fill_Shift() {
-        FillCombo(cboShift, "SELECT DISTINCT ShiftName FROM tblShift ORDER BY ShiftName", "ShiftName");
-    }
+//    public void Fill_Shift() {
+//        FillCombo(cboShift, "SELECT DISTINCT ShiftName FROM tblShift ORDER BY ShiftName", "ShiftName");
+//    }
 
     public void Fill_YarnCount() {
         FillCombo(cboYarnCount1, "SELECT DISTINCT YarnCount FROM tblYarnCount ORDER BY YarnCount", "YarnCount");
@@ -1109,7 +1109,7 @@ public class frmProcessWiseProductionWaste extends javax.swing.JInternalFrame {
     }
 
     public void Fill_Operator() {
-        FillCombo(cboOperator, "SELECT DISTINCT EmpName FROM tblEmployeeInfo ORDER BY EmpName", "EmpName");
+        FillCombo(cboOperator, "SELECT DISTINCT EmployeeName FROM tblEmployee ORDER BY EmployeeName", "EmployeeName");
     }
 
 // ---------- ID ----------
